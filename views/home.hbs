@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <link rel="stylesheet" href="/css/style.css" type="text/css" />
+  </head>
+  <body>
+    <div id="messages"></div>
+    <form id="join-game-form" action="">
+        <input id="join_csrf" type="hidden" name="_csrf" value="{{csrf}}" />
+        <input id="username" type="text" autocomplete="off" placeholder="username"/>
+        <input id="gameName" type="text" autocomplete="off" placeholder="Room ID (optional)"/><button>Join</button>
+    </form>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/bundle.js"></script>
+  </body>
+</html>

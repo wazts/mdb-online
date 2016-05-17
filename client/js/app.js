@@ -1,34 +1,35 @@
 /* global $ */
 /* global io */
 
-var socket = io();
+var $ = require('jquery');
+var client = require('./mdbClient.js');
 var token = "";
-
-// --- Set up socket functions
-socket.on("clientJoinedGame", clientJoinedGame);
 
 // --- Add actions
 $("form#join-game-form").submit(hostJoinGame);
 
-function clientJoinedGame(data){
-    console.log(data);
-    $("#messages").append(data["token"]);
-}
-
-/** 
+/**
  * We want to join a game
  */
 function hostJoinGame() {
     console.log('Sending join game request');
-    var roomID = $('input#gameName').val();
-    
+
     var data = {}
+    data._csrf = $("input#join_csrf").val();
+    data.username = $("input#username").val();
+
+    var roomID = $('input#gameName').val();
     if (roomID != "") {
         console.log("Trying to connect to room '" + roomID + "'");
         data["room_id"] = roomID;
     }
-    
-    $.post("/join", data);
+
+    $.post("/join", data, function(res, status) {
+        if (status == "success"){
+            
+            client.startGame(res.username, res.roomID, res.token);
+        }
+    });
     $('input#gameName').val('');
     return false;
 }
