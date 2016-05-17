@@ -1,0 +1,16 @@
+{
+    "dataType": "MDB Cards",
+    "gold": [
+        {
+            "id": "0",
+            "text": "You shit your pants just a little bit"
+        }
+    ],
+    "trigger": [
+        {
+            "id": "0",
+            "text": "Million dollars but...everytime you hear a bell"
+        }
+    ]
+
+}
