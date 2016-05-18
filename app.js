@@ -4,7 +4,7 @@
 var fs = require("fs");
 
 // --- logger
-var log = require("./logger.js");
+var log = require("./helpers/logger.js");
 
 // --- express
 var express = require("express");
@@ -37,7 +37,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // --- Game
-var MDBGame = require("./mdbgame.js");
+var MDBGame = require("./mdb/mdbgame.js");
 
 // --- Setup static
 app.use(express.static(__dirname + "/client"));
@@ -61,7 +61,7 @@ app.use(function (err, req, res, next) {
  * The Home page
  */
 app.get("/", csrfProtection, function(req, res){
-    res.render("home", { csrf: req.csrfToken() });
+    res.render("react", { csrf: req.csrfToken() });
 });
 
 // Join a game by ID or create a new game
